@@ -201,4 +201,4 @@ const AgentDashboard = () => {
 };
 
 export default AgentDashboard;
-import { supabase } from "../../../lib/supabaseClient";
+// Remove the duplicate import below
