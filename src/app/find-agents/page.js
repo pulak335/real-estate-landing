@@ -1,10 +1,21 @@
+'use client';
 import React from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+
+import { useRouter, useSearchParams } from 'next/navigation';
+import AgentViewPage from './agent-view/page'; // Import the new AgentViewPage
 
 const FindAgentsPage = () => {
-  return (
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const agentId = searchParams.get('id');
 
+  // If agentId is present, render the AgentViewPage
+  if (agentId) {
+    return <AgentViewPage />;
+  }
+
+  // Otherwise, render the agent search and list page
+  return (
     <div className="min-h-screen bg-gray-100 py-12">
       <div className="container mx-auto px-4">
         <h1 className="text-4xl font-bold text-gray-900 mb-8 text-center">Find Your Perfect Agent</h1>
@@ -53,7 +64,10 @@ const FindAgentsPage = () => {
             <img src="/agent1.svg" alt="Agent 1" className="w-32 h-32 rounded-full mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-gray-900 mb-2">Jane Doe</h3>
             <p className="text-gray-600 mb-4">Residential Specialist</p>
-            <button className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+            <button
+              onClick={() => router.push('/find-agents/agent-view?id=1')}
+              className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+            >
               View Profile
             </button>
           </div>
@@ -61,7 +75,10 @@ const FindAgentsPage = () => {
             <img src="/agent2.svg" alt="Agent 2" className="w-32 h-32 rounded-full mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-gray-900 mb-2">John Smith</h3>
             <p className="text-gray-600 mb-4">Commercial Properties</p>
-            <button className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+            <button
+              onClick={() => router.push('/find-agents/agent-view?id=2')}
+              className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+            >
               View Profile
             </button>
           </div>
@@ -69,14 +86,16 @@ const FindAgentsPage = () => {
             <img src="/agent3.svg" alt="Agent 3" className="w-32 h-32 rounded-full mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-gray-900 mb-2">Emily White</h3>
             <p className="text-gray-600 mb-4">Luxury Homes</p>
-            <button className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+            <button
+              onClick={() => router.push('/find-agents/agent-view?id=3')}
+              className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+            >
               View Profile
             </button>
           </div>
         </div>
       </div>
     </div>
-
   );
 };
 
